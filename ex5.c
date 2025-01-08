@@ -101,7 +101,6 @@ void playSong(Song *song) {
 void playPlaylist(Playlist *playlist) {
     SongNode *current = playlist->songs;
     while (current != NULL) {
-        current->data->streams++;
         playSong(current->data);
         current = current->next;
         printf("\n");
@@ -157,7 +156,7 @@ char *inputString() {
                 printf("malloc error");
                 exit(1);
             }
-        } else if (str[i] == '\0') break;
+        } else if (str[i] != '\0') break;
     }
     return str;
 }
@@ -216,7 +215,7 @@ void sortStreams(Playlist *playlist, int multiplier) {
     for (int i = 0; i < playlist->songsNum - 1; i++) {
         SongNode *curr = playlist->songs;
         while (curr->next != NULL) {
-            if (multiplier * curr->data->streams > multiplier * curr->next->data->year) swapSong(curr);
+            if (multiplier * curr->data->streams > multiplier * curr->next->data->streams) swapSong(curr);
             curr = curr->next;
         }
     }
