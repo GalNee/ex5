@@ -68,7 +68,7 @@ void printSongsDetails(Playlist *playlist) {
 void deleteSong(Playlist *playlist) {
     printSongsDetails(playlist);
     int choice;
-    printf("choose a song to delete, or enter 0 to quit:\n");
+    printf("choose a song to delete, or 0 to quit:\n");
     scanf(" %d", &choice);
     //if the choice is in the range
     if (choice > 0 && choice <= playlist->songsNum) {
