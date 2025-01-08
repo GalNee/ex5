@@ -149,6 +149,17 @@ char *inputString() {
         if (chr != '\n') str[size - 1] = chr;
         else str[size - 1] = '\0';
     }
+    //deleting every space at the end of the string
+    for (int i = size - 1; i >= 0; i--) {
+        if (str[i] == ' ') {
+            str = realloc(str, sizeof(char) * i);
+            if (str == NULL) {
+                printf("malloc error");
+                exit(1);
+            }
+        }
+        else if (str[i] == '\0') break;
+    }
     return str;
 }
 
