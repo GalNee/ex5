@@ -84,7 +84,7 @@ void deleteSong(Playlist *playlist) {
             }
             freeSong(curr->data);
             if (prev != NULL) prev->next = curr->next;
-            //if you chose to delete the first song
+                //if you chose to delete the first song
             else playlist->songs = curr->next;
         }
         printf("Song deleted successfully.\n");
@@ -157,8 +157,7 @@ char *inputString() {
                 printf("malloc error");
                 exit(1);
             }
-        }
-        else if (str[i] == '\0') break;
+        } else if (str[i] == '\0') break;
     }
     return str;
 }
@@ -356,28 +355,26 @@ void addPlaylist(PlaylistNode **playlists) {
 
 //a function to remove a playlist
 void removePlaylist(PlaylistNode **playlists) {
-    int choice, size;
-    do {
-        size = printPlaylistsList(*playlists);
-        scanf(" %d", &choice);
-        if (choice > size + 1 || choice < 1) printf("Invalid option.\n");
-        else if (choice != size + 1) {
-            if (size == 1) *playlists = NULL;
-            else {
-                PlaylistNode *curr = *playlists, *prev = NULL;
-                int counter = 0;
-                while (counter < choice - 1) {
-                    prev = curr;
-                    curr = curr->next;
-                    counter++;
-                }
-                freePlaylist(curr->data);
-                if (prev != NULL) prev->next = curr->next;
-                //if you chose to delete the first playlist
-                else *playlists = curr->next;
+    int choice, size = printPlaylistsList(*playlists);;
+    scanf(" %d", &choice);
+    if (choice > size + 1 || choice < 1) printf("Invalid option.\n");
+    else if (choice != size + 1) {
+        if (size == 1) *playlists = NULL;
+        else {
+            PlaylistNode *curr = *playlists, *prev = NULL;
+            int counter = 0;
+            while (counter < choice - 1) {
+                prev = curr;
+                curr = curr->next;
+                counter++;
             }
+            freePlaylist(curr->data);
+            if (prev != NULL) prev->next = curr->next;
+                //if you chose to delete the first playlist
+            else *playlists = curr->next;
         }
-    } while (choice != size + 1);
+        printf("Playlist deleted.\n");
+    }
 }
 
 void printMainMenu() {
