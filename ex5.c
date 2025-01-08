@@ -138,17 +138,15 @@ char *inputString() {
     scanf(" ");
     //stop at the end of the line
     while (chr != '\n') {
-        if (chr != '\r') {
-            size++;
-            scanf("%c", &chr);
-            str = realloc(str, sizeof(char) * size);
-            if (str == NULL) {
-                printf("malloc error");
-                exit(1);
-            }
-            if (chr != '\n') str[size - 1] = chr;
-            else str[size - 1] = '\0';
-        } else str[size - 1] = '\0';
+        size++;
+        scanf("%c", &chr);
+        str = realloc(str, sizeof(char) * size);
+        if (str == NULL) {
+            printf("malloc error");
+            exit(1);
+        }
+        if (chr != '\n' && chr != '\r') str[size - 1] = chr;
+        else str[size - 1] = '\0';
     }
     return str;
 }
